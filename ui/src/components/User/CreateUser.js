@@ -14,6 +14,7 @@ function CreateUser({refreshTable}) {
         message.success('Create successful');
         form.resetFields();
         refreshTable();
+        setIsModalOpen(false);
       })
       .catch(() => {
         message.error('Create failed');
