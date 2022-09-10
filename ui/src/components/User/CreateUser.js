@@ -42,9 +42,6 @@ function CreateUser({refreshTable}) {
           <Form.Item label="Address" name="address">
             <Input placeholder="Input address"/>
           </Form.Item>
-          <Form.Item>
-            <Button type="primary" htmlType="submit">Create</Button>
-          </Form.Item>
           <Form.Item name="tag" label="Tags" rules={[{required: true}]}>
             <Select
               placeholder="Select a tags"
@@ -55,6 +52,9 @@ function CreateUser({refreshTable}) {
               <Option value="qa">QA</Option>
               <Option value="em">EM</Option>
             </Select>
+          </Form.Item>
+          <Form.Item>
+            <Button type="primary" htmlType="submit">Create</Button>
           </Form.Item>
         </Form>
 

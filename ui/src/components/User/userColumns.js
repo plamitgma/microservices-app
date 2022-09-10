@@ -21,10 +21,11 @@ export default [
     render: (_, {tags}) => (
       <>
         {tags.map((tag) => {
-          let color = tag.length > 5 ? 'geekblue' : 'green';
-
-          if (tag === 'loser') {
+          let color = 'geekblue';
+          if (tag === 'em') {
             color = 'volcano';
+          } else if(tag === 'qa')  {
+            color = 'geekblue';
           }
 
           return (
