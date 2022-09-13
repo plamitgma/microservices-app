@@ -1,6 +1,6 @@
 const db = require("../models");
 const Devices = db.devices;
-// Create and Save a new Tutorial
+// Create and Save a new Device
 exports.create = (req, res) => {
   // Validate request
   if (!req.body.name) {
@@ -8,13 +8,13 @@ exports.create = (req, res) => {
     return;
   }
   console.log(req.body.tags);
-  // Create a Tutorial
+  // Create a Device
   const device = new Devices({
     name: req.body.name,
     make: req.body.make,
     model: req.body.model,
   });
-  // Save Tutorial in the database
+  // Save Device in the database
   device
     .save(device)
     .then(data => {
@@ -38,7 +38,7 @@ exports.getAll = (req, res) => {
       });
     });
 };
-// Find a single Tutorial with an id
+// Find a single Device with an id
 exports.get = (req, res) => {
   const id = req.params.id;
   Devices.findById(id)
@@ -53,7 +53,7 @@ exports.get = (req, res) => {
         .send({ message: "Error retrieving device with id=" + id });
     });
 };
-// Update a Tutorial by the id in the request
+// Update a Device by the id in the request
 exports.update = (req, res) => {
   if (!req.body) {
     return res.status(400).send({

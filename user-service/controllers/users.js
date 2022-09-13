@@ -1,6 +1,6 @@
 const db = require("../models");
 const Users = db.users;
-// Create and Save a new Tutorial
+// Create and Save a new User
 exports.create = (req, res) => {
   // Validate request
   if (!req.body.name) {
@@ -8,15 +8,15 @@ exports.create = (req, res) => {
     return;
   }
   console.log(req.body.tags);
-  // Create a Tutorial
-  const tutorial = new Users({
+  // Create a User
+  const user = new Users({
     name: req.body.name,
     address: req.body.address,
     tags: req.body.tags,
   });
-  // Save Tutorial in the database
-  tutorial
-    .save(tutorial)
+  // Save User in the database
+  user
+    .save(user)
     .then(data => {
       res.send(data);
     })
@@ -38,7 +38,7 @@ exports.getAll = (req, res) => {
       });
     });
 };
-// Find a single Tutorial with an id
+// Find a single User with an id
 exports.get = (req, res) => {
   const id = req.params.id;
   Users.findById(id)
@@ -53,7 +53,7 @@ exports.get = (req, res) => {
         .send({ message: "Error retrieving User with id=" + id });
     });
 };
-// Update a Tutorial by the id in the request
+// Update a User by the id in the request
 exports.update = (req, res) => {
   if (!req.body) {
     return res.status(400).send({
@@ -65,7 +65,7 @@ exports.update = (req, res) => {
     .then(data => {
       if (!data) {
         res.status(404).send({
-          message: `Cannot update User with id=${id}. Maybe Tutorial was not found!`
+          message: `Cannot update User with id=${id}. Maybe user was not found!`
         });
       } else res.send({ message: "User was updated successfully." });
     })
