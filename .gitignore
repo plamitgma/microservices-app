@@ -1,3 +1,4 @@
 ./ui/node_modules
 ./user-service/node_modules
+./device-service/node_modules
 .idea
