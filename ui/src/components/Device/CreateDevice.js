@@ -1,9 +1,7 @@
 import React, {useState} from 'react';
-import {Button, Modal, Form, Input, Select, message} from "antd";
+import {Button, Modal, Form, Input, message} from "antd";
 
 import axios from '../../services';
-
-const {Option} = Select;
 
 function CreateDevice({refreshTable}) {
   const [form] = Form.useForm();

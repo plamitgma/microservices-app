@@ -43,7 +43,7 @@ function CreateUser({refreshTable}) {
           <Form.Item label="Address" name="address">
             <Input placeholder="Input address"/>
           </Form.Item>
-          <Form.Item name="tag" label="Tags" rules={[{required: true}]}>
+          <Form.Item name="tags" label="Tags" rules={[{required: true}]}>
             <Select
               placeholder="Select a tags"
               allowClear

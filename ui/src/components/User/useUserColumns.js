@@ -2,7 +2,9 @@ import React from "react";
 import {Modal, Space, Tag} from "antd";
 import {ExclamationCircleOutlined} from "@ant-design/icons";
 
-export default [
+import axios from "../../services";
+
+const useUserColumns = callback => [
   {
     title: 'Name',
     dataIndex: 'name',
@@ -20,7 +22,7 @@ export default [
     dataIndex: 'tags',
     render: (_, {tags}) => (
       <>
-        {tags.map((tag) => {
+        {(tags || []).map((tag) => {
           let color = 'geekblue';
           if (tag === 'em') {
             color = 'volcano';
@@ -51,7 +53,8 @@ export default [
           okType: 'danger',
           cancelText: 'No',
           onOk() {
-            console.log('OK');
+            axios.delete(`/users/${record.id}`)
+              .then(callback)
           },
         });
       }
@@ -63,4 +66,6 @@ export default [
       )
     },
   },
-];
+]
+
+export default useUserColumns;
