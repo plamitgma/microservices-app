@@ -14,11 +14,25 @@ services:
 
     networks:
       - microapps
+
+
+  devicemongodb:
+    image: "mongo"
+
+    ports:
+      - "27018:27017"
+
+    volumes:
+      - data:/data/db
+
+    networks:
+      - microapps
+
   userservice:
     image: "userservice"
     build: ./user-service
-    ports:
-      - 8080:9000
+#    ports:
+#      - 8080:9000
     depends_on:
       - usermongodb
 
@@ -29,18 +43,17 @@ services:
     networks:
       - microapps
 
-
   deviceservice:
     image: "deviceservice"
     build: ./device-service
-    ports:
-      - 8090:9100
+#    ports:
+#      - 8090:9100
     depends_on:
       - usermongodb
 
     environment:
       PORT: 9100
-      MONGO_URL: "mongodb://usermongodb:27017/devices"
+      MONGO_URL: "mongodb://devicemongodb:27017/devices"
 
     networks:
       - microapps
@@ -51,14 +64,15 @@ services:
     build: ./ui
 
     ports:
-      - 3000:3000
-
-    environment:
-      BASE_URL: "http:///localhost:9010/api"
+      - 80:80
 
     depends_on:
       - userservice
       - deviceservice
+
+    environment:
+      NGINX_HOST: http://localhost
+      NGINX_PORT: 80
 
     networks:
       - microapps

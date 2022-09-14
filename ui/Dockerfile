@@ -1,4 +1,4 @@
-FROM node
+FROM node as build
 
 WORKDIR /app
 
@@ -8,4 +8,10 @@ RUN yarn install
 
 COPY . .
 
-CMD ["yarn", "start"]
+RUN yarn build
+
+FROM nginx
+
+COPY ./nginx/nginx.conf /etc/nginx/conf.d/default.conf
+
+COPY --from=build /app/build /usr/share/nginx/html
