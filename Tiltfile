@@ -9,4 +9,4 @@ k8s_yaml('Tilt/userservice.yaml')
 
 docker_build('uiservice', './ui')
 k8s_yaml('Tilt/ui.yaml')
-k8s_resource('ui', port_forwards=80)
+k8s_resource('ui', port_forwards=8080)
