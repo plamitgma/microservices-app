@@ -30,10 +30,10 @@ app.use('/api/devices', devicesRouter);
 
 db.mongoose
   .connect(db.url, {
-    // auth: {
-    //   username: "lphan",
-    //   password: "12345",
-    // },
+    auth: {
+        username: process.env.MONGO_INITDB_ROOT_USERNAME,
+        password: process.env.MONGO_INITDB_ROOT_PASSWORD,
+    },
     authSource: "admin",
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -47,7 +47,7 @@ db.mongoose
   });
 
 // set port, listen for requests
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 9100;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });

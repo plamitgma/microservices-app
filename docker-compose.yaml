@@ -10,7 +10,7 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - data:/data/db
+      - userdata:/data/db/
 
     networks:
       - microapps
@@ -23,7 +23,7 @@ services:
       - "27018:27017"
 
     volumes:
-      - data:/data/db
+      - devicedata:/data/db/
 
     networks:
       - microapps
@@ -32,7 +32,7 @@ services:
     image: "userservice"
     build: ./user-service
 #    ports:
-#      - 8080:9000
+#      - 9000:9000
     depends_on:
       - usermongodb
 
@@ -47,9 +47,9 @@ services:
     image: "deviceservice"
     build: ./device-service
 #    ports:
-#      - 8090:9100
+#      - 9100:9100
     depends_on:
-      - usermongodb
+      - devicemongodb
 
     environment:
       PORT: 9100
@@ -71,14 +71,15 @@ services:
       - deviceservice
 
     environment:
-      NGINX_HOST: http://localhost
-      NGINX_PORT: 80
+      USER_ENDPOINT: http://userservice:9000/api/users
+      DEVICE_ENDPOINT: http://deviceservice:9100/api/devices
 
     networks:
       - microapps
 
 volumes:
-  data:
+  userdata:
+  devicedata:
 
 networks:
   microapps:
