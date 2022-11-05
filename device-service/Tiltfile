@@ -1,0 +1,4 @@
+docker_build('deviceservice', '.')
+
+k8s_yaml('deployment.yaml')
+
