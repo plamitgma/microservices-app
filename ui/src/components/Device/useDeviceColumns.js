@@ -1,10 +1,12 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+
 import React from "react";
 import {Modal, Space} from "antd";
 import {ExclamationCircleOutlined} from "@ant-design/icons";
 
 import axios from '../../services';
 
-export default callback => {
+function useDeviceColumns(callback) {
   return [
     {
       title: 'Name',
@@ -37,17 +39,19 @@ export default callback => {
             cancelText: 'No',
             onOk() {
               axios.delete(`/devices/${record.id}`)
-                .then(callback)
+                  .then(callback)
             },
           });
         }
 
         return (
-          <Space size="middle">
-            <a onClick={onDelete}>Delete</a>
-          </Space>
+            <Space size="middle">
+              <a onClick={onDelete}>Delete</a>
+            </Space>
         )
       },
     },
   ]
 }
+
+export default useDeviceColumns;
