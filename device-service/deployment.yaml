@@ -30,8 +30,9 @@ spec:
           image: deviceservice
           ports:
             - containerPort: 9100
+          envFrom:
+            - configMapRef: # referencing the ConfigMap
+                name: device-config # name of the ConfigMap
           env:
             - name: PORT
               value: "9100"
-            - name: MONGO_URL
-              value: 'mongodb://devicemongo:27017/devices'
