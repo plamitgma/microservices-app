@@ -30,8 +30,9 @@ spec:
           image: userservice
           ports:
             - containerPort: 9000
+          envFrom:
+            - secretRef:
+                name: user-config
           env:
             - name: PORT
               value: "9000"
-            - name: MONGO_URL
-              value: "mongodb://usermongo:27017/users"
