@@ -10,7 +10,7 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - userdata:/data/db/
+      - /Users/lphan/Desktop/data/userdata:/data/db/
 
     networks:
       - microapps
@@ -23,7 +23,7 @@ services:
       - "27018:27017"
 
     volumes:
-      - devicedata:/data/db/
+      - /Users/lphan/Desktop/data/devicedata:/data/db/
 
     networks:
       - microapps
@@ -76,10 +76,6 @@ services:
 
     networks:
       - microapps
-
-volumes:
-  userdata:
-  devicedata:
 
 networks:
   microapps:
